@@ -12,6 +12,8 @@ import Form from "./components/Form";
 import ExpenseForm from "./components/ExpenseForm";
 //import { produce } from "immer";
 import styled from "styled-components";
+import ExpenseList from "./ExpenseTracer/components/ExpenseList";
+import ExpenseFilter from "./ExpenseTracer/components/ExpenseFilter";
 
 const FormSection = styled.div`
   background-color: yellow;
@@ -22,6 +24,14 @@ function App() {
   const [products, setProducts] = useState(["Inyange", "Amata"]);
   const [game, setGame] = useState({ id: 1, player: { name: "ugeen" } });
 
+  const [Expenses, setExpenses] = useState([
+    { id: 1, description: "sony", amount: 11, category: "phone" },
+    { id: 1, description: "hp", amount: 12, category: "laptop" },
+    { id: 1, description: "sumsung", amount: 13, category: "tablet" },
+    { id: 1, description: "philips", amount: 14, category: "television" },
+  ]);
+
+  const [selectedCtegory, setSelectedCategory] = useState("");
   const items = [
     "Kigali",
     "Gasabo",
@@ -31,6 +41,10 @@ function App() {
     "East",
     "West",
   ];
+
+  const visibleCategory = selectedCtegory
+    ? Expenses.filter((e) => e.category === selectedCtegory)
+    : Expenses;
 
   const handleSelectedItem = (item: string) =>
     console.log(item + " is clicked");
@@ -130,6 +144,27 @@ function App() {
 
       <div>
         <ExpenseForm></ExpenseForm>
+      </div>
+
+      <div>
+        <h1>
+          -----------------------------------------------------------------------------
+          --------------
+        </h1>
+      </div>
+      <div>
+        <div className="mb-5">
+          <ExpenseFilter
+            onSelectCategory={(category) => setSelectedCategory(category)}
+          ></ExpenseFilter>
+        </div>
+
+        <ExpenseList
+          expenses={visibleCategory}
+          deleteClick={(amt) =>
+            setExpenses(Expenses.filter((e) => e.amount !== amt))
+          }
+        ></ExpenseList>
       </div>
     </>
   );
