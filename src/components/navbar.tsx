@@ -5,7 +5,7 @@ interface NavbarProps {
 }
 
 function Navbar({ itemsCount }: NavbarProps) {
-  return <div>Navbar:{itemsCount}</div>;
+  return <div>Navbar: we only have {itemsCount} items</div>;
 }
 
 export default Navbar;
