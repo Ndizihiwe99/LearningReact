@@ -35,6 +35,14 @@ function ExpenseList({ expenses, deleteClick }: expenseProps) {
           </tr>
         ))}
       </tbody>
+      <tbody>
+        <tr>
+          <td className="mt-3">
+            <b>Total</b>
+          </td>
+          <td>{expenses.reduce((acc, curr) => acc + curr.amount, 0)}</td>
+        </tr>
+      </tbody>
     </table>
   );
 }

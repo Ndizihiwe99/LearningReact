@@ -9,7 +9,7 @@ import Cart from "./components/cart";
 import Game from "./components/Game";
 import ExpandableText from "./components/ExpandableText";
 import Form from "./components/Form";
-import ExpenseForm from "./components/ExpenseForm";
+import ExpenseForm from "./ExpenseTracer/components/ExpenseForm";
 //import { produce } from "immer";
 import styled from "styled-components";
 import ExpenseList from "./ExpenseTracer/components/ExpenseList";
@@ -26,9 +26,9 @@ function App() {
 
   const [Expenses, setExpenses] = useState([
     { id: 1, description: "sony", amount: 11, category: "phone" },
-    { id: 1, description: "hp", amount: 12, category: "laptop" },
-    { id: 1, description: "sumsung", amount: 13, category: "tablet" },
-    { id: 1, description: "philips", amount: 14, category: "television" },
+    { id: 2, description: "hp", amount: 12, category: "laptop" },
+    { id: 3, description: "sumsung", amount: 13, category: "tablet" },
+    { id: 4, description: "philips", amount: 14, category: "television" },
   ]);
 
   const [selectedCtegory, setSelectedCategory] = useState("");
@@ -143,10 +143,6 @@ function App() {
       </div>
 
       <div>
-        <ExpenseForm></ExpenseForm>
-      </div>
-
-      <div>
         <h1>
           -----------------------------------------------------------------------------
           --------------
@@ -154,8 +150,12 @@ function App() {
       </div>
       <div>
         <div className="mb-5">
+          <ExpenseForm onsubmit={(data) => console.log(data)}></ExpenseForm>
+        </div>
+
+        <div className="mb-5">
           <ExpenseFilter
-            onSelectCategory={(category) => setSelectedCategory(category)}
+            onSelectCategory={(cat) => setSelectedCategory(cat)}
           ></ExpenseFilter>
         </div>
 
